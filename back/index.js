@@ -63,7 +63,7 @@ app.post("/create-account", async (req, res) => {
     },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "30m",
+      expiresIn: "36000m",
     }
   );
 
