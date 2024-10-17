@@ -48,10 +48,30 @@ app.post("/create-account", async (req, res) => {
       message: "User is alredy exist",
     });
   }
+
   const user = new User({
     fullName,
     email,
     password,
+  });
+
+  await user.save();
+
+  const accessToken = jwt.sign(
+    {
+      user,
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: "30m",
+    }
+  );
+
+  return res.json({
+    error: false,
+    user,
+    accessToken,
+    message: "Register successful",
   });
 });
 
