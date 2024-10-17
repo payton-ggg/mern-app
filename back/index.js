@@ -25,6 +25,7 @@ app.get("/", (req, res) => {
   res.json({ data: "hello" });
 });
 
+// Create account
 app.post("/create-account", async (req, res) => {
   const { fullName, email, password } = req.body;
   if (!fullName) {
@@ -75,6 +76,7 @@ app.post("/create-account", async (req, res) => {
   });
 });
 
+//Login account
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -115,6 +117,9 @@ app.post("/login", async (req, res) => {
     });
   }
 });
+
+// Add note
+app.post("add-note", authenticateToken, async (req, res) => {});
 
 console.log("http://localhost:8000");
 
